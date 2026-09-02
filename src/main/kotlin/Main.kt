@@ -20,7 +20,7 @@ fun main() {
     println("Navio com a maior carga se chama ${TravelAnalysis.getShipWithBiggestCargoCapacity(ships)}. \n")
 
     println("Qual navio fez a viagem mais longa? E qual a duração?")
-    val firstEntry = TravelAnalysis.getShipNameForLongestTravelAndDuration(travels).entries.first()
+    val firstEntry  = TravelAnalysis.getShipNameForLongestTravelAndDuration(travels).entries.first()
     println("A viagem mais longa foi de ${firstEntry.value} dias e pertence ao navio ${firstEntry.key}. \n")
 
 }

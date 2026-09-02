@@ -10,17 +10,17 @@ class TravelAnalysis private constructor() {
 
         // Quantos navios do tipo Pirata a frota possui?
         fun countPirateShips(ships: List<Ship>): Int {
-            return ships.count { it.type == ShipType.PIRATE }
+            return ships.filter { it.type == ShipType.PIRATE }.size
         }
 
         // Qual o valor da viagem mais cara?
         fun getMostExpensiveTravel(travels: List<Travel>): Double {
-            return travels.maxOf { it.cost }
+            return travels.maxByOrNull { it.cost }?.cost ?: 0.0
         }
 
         // Qual foi o custo médio das viagens para o Black Pearl?
         fun getAverageCostForBlackPearl(ships: List<Ship>, travels: List<Travel>): Double {
-            val blackPearl = ships.first { it.name == "Black Pearl" }
+            val blackPearl = ships.find { it.name == "Black Pearl" }
             return travels.filter { it.ship == blackPearl }
                 .map { it.cost }
                 .average()
@@ -33,8 +33,8 @@ class TravelAnalysis private constructor() {
 
         // Qual o nome do que navio fez a viagem mais longa? E qual a duração?
         fun getShipNameForLongestTravelAndDuration(travels: List<Travel>): Map<String, Int> {
-            val x = travels.maxByOrNull { it.durationDays }
-            return mapOf(Pair(x?.ship?.name ?: "", x?.durationDays ?: 0))
+            val longestTravel = travels.maxByOrNull { it.durationDays }
+            return mapOf(Pair(longestTravel?.ship?.name ?: "", longestTravel?.durationDays ?: 0))
         }
 
     }
